@@ -4,8 +4,9 @@
 class binary_tree_node {
     public :
         int data;
+        binary_tree_node * parent;
         binary_tree_node * left, * right;
-        binary_tree_node( int data ) : data( data ), left( nullptr ), right( nullptr ) {}
+        binary_tree_node( int data ) : data( data ), parent( nullptr ), left( nullptr ), right( nullptr ) {}
 };
 
 binary_tree_node * build_test_binary_tree() {
@@ -18,6 +19,14 @@ binary_tree_node * build_test_binary_tree() {
     root->right->right           = new binary_tree_node( 18 );
     root->left->left->left       = new binary_tree_node( 2 );
     root->left->left->left->left = new binary_tree_node( 7 );
+    root->left->parent           = root;
+    root->right->parent          = root;
+    root->left->left->parent     = root->left;
+    root->left->right->parent    = root->left;
+    root->right->left->parent    = root->right;
+    root->right->right->parent    = root->right;
+    root->left->left->left->parent = root->left->left;
+    root->left->left->left->left->parent = root->left->left->left;
     return root;
 }
 
